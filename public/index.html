@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ConnectHub - Modern Mini Social Media Platform. Connect with creators, share updates, and discover inspiring content.">
+  <title>Feed | ConnectHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%3E<text y=%2226%22 font-size=%2224%22>⚡</text></svg>">
+</head>
+<body>
+  <!-- Top Navigation Bar (Populated by main.js) -->
+  <div id="navbarContainer"></div>
+
+  <!-- Main 3-Column Layout -->
+  <main class="main-container">
+    <!-- Left Column: User Profile Card & Quick Links -->
+    <aside class="left-sidebar">
+      <div class="widget-card" id="currentUserWidget">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="widget-card">
+        <nav class="side-nav-menu">
+          <a href="index.html" class="side-nav-item active">
+            <span class="side-nav-icon">🏠</span>
+            <span>Home Feed</span>
+          </a>
+          <a href="users.html" class="side-nav-item">
+            <span class="side-nav-icon">🔍</span>
+            <span>Explore People</span>
+          </a>
+          <a href="create-post.html" class="side-nav-item">
+            <span class="side-nav-icon">✍️</span>
+            <span>Create New Post</span>
+          </a>
+          <a href="following.html?tab=following" class="side-nav-item">
+            <span class="side-nav-icon">✨</span>
+            <span>Following</span>
+          </a>
+          <a href="following.html?tab=followers" class="side-nav-item">
+            <span class="side-nav-icon">🌟</span>
+            <span>Followers</span>
+          </a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Center Column: Quick Composer & Feed Posts -->
+    <section class="feed-content">
+      <!-- Quick Post Card -->
+      <div class="quick-post-card">
+        <form id="quickPostForm">
+          <div class="quick-post-row">
+            <textarea id="quickPostContent" class="quick-post-input" placeholder="What's happening in your world today?" rows="3" required></textarea>
+          </div>
+          <div class="quick-post-actions">
+            <div class="image-url-input-group">
+              <span style="font-size: 1.1rem;">🖼️</span>
+              <input type="url" id="quickPostImage" placeholder="Image URL (optional)...">
+            </div>
+            <button type="submit" id="quickPostSubmitBtn" class="nav-btn create-btn" style="border: none;">
+              <span>🚀</span> Post
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Feed Mode Switcher -->
+      <div class="feed-tabs-header">
+        <button id="tabPersonalized" class="feed-tab active" onclick="switchFeedTab('personalized')">
+          Personalized Feed
+        </button>
+        <button id="tabExplore" class="feed-tab" onclick="switchFeedTab('explore')">
+          Explore All Posts
+        </button>
+      </div>
+
+      <!-- Feed Posts Stream -->
+      <div id="feedPostsContainer" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="spinner"></div>
+      </div>
+    </section>
+
+    <!-- Right Column: Suggested Users -->
+    <aside class="right-sidebar">
+      <div class="widget-card">
+        <div class="widget-title">
+          <span>Suggested Creators</span>
+          <span class="badge">Explore</span>
+        </div>
+        <div class="user-suggestion-list" id="suggestedUsersList">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+      <div class="widget-card" style="font-size: 0.8rem; color: var(--text-dim); text-align: center;">
+        <p style="font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">ConnectHub v1.0</p>
+        <p>CodeAlpha Internship Task 2</p>
+        <p style="margin-top: 6px;">Built with Node.js, Express, MongoDB &amp; Vanilla JS.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Edit Post Modal -->
+  <div class="modal-backdrop" id="editPostModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Edit Post</h3>
+        <button class="modal-close-btn" onclick="closeEditPostModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Post Content</label>
+          <textarea id="editPostContent" class="form-control" rows="4" maxlength="2000" required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Image URL (Optional)</label>
+          <input type="url" id="editPostImage" class="form-control" placeholder="https://example.com/image.jpg">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeEditPostModal()">Cancel</button>
+        <button class="btn-primary" style="width: auto; padding: 10px 20px;" onclick="submitEditPost()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Post Confirmation Modal -->
+  <div class="modal-backdrop" id="deletePostModal">
+    <div class="modal-box" style="max-width: 420px;">
+      <div class="modal-header">
+        <h3 style="color: var(--danger);">Delete Post</h3>
+        <button class="modal-close-btn" onclick="closeDeletePostModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Are you sure you want to permanently delete this post? All associated comments and likes will be removed. This action cannot be undone.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeDeletePostModal()">Cancel</button>
+        <button class="btn-primary" style="background: var(--danger); width: auto; padding: 10px 20px;" onclick="confirmDeletePost()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/feed.js"></script>
+</body>
+</html>

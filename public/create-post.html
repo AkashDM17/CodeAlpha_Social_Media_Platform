@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create a new post on ConnectHub with text and images.">
+  <title>Create Post | ConnectHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%3E<text y=%2226%22 font-size=%2224%22>⚡</text></svg>">
+</head>
+<body>
+  <div id="navbarContainer"></div>
+
+  <main class="main-container single-column" style="max-width: 680px;">
+    <div class="widget-card" style="padding: 32px 28px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">
+        <h1 style="font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 10px;">
+          <span>✍️</span> Create New Post
+        </h1>
+        <a href="index.html" class="btn-secondary" style="font-size: 0.85rem;">Cancel</a>
+      </div>
+
+      <form id="createPostForm" style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="form-group">
+          <label class="form-label" for="postContent">What do you want to talk about?</label>
+          <textarea id="postContent" class="form-control" rows="6" maxlength="2000" placeholder="Share your project updates, tips, questions, or inspirations..." required autofocus></textarea>
+          <div style="display: flex; justify-content: flex-end; margin-top: 4px;">
+            <span id="charCounter" style="font-size: 0.78rem; color: var(--text-dim);">0 / 2000</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="postImageUrl">Image URL (Optional)</label>
+          <input type="url" id="postImageUrl" class="form-control" placeholder="https://images.unsplash.com/photo-...">
+          <small style="color: var(--text-dim); font-size: 0.78rem; margin-top: 4px;">Provide an image link to attach high-resolution photography or diagrams.</small>
+        </div>
+
+        <!-- Live Image Preview Box -->
+        <div id="imagePreviewContainer" style="display: none; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); background: #000; max-height: 350px;">
+          <img id="imagePreview" src="" alt="Post Preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+
+        <button type="submit" id="createPostSubmitBtn" class="btn-primary" style="margin-top: 8px;">
+          <span>🚀</span> Publish Post
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/post.js"></script>
+</body>
+</html>

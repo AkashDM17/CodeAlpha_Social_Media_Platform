@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage and view your Followers and Following network on ConnectHub.">
+  <title>Network | ConnectHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%22%3E<text y=%2226%22 font-size=%2224%22>⚡</text></svg>">
+</head>
+<body>
+  <div id="navbarContainer"></div>
+
+  <main class="main-container single-column" style="max-width: 960px;">
+    <!-- Network Header and Tabs -->
+    <div class="widget-card" style="padding: 24px;">
+      <h1 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 6px;" id="networkTitleSpan">Social Network</h1>
+      <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 18px;">
+        Browse people who follow you and accounts that you are actively following.
+      </p>
+
+      <div class="feed-tabs-header">
+        <button id="tabFollowing" class="feed-tab active" onclick="switchNetworkTab('following')">
+          <span>✨</span> Following
+        </button>
+        <button id="tabFollowers" class="feed-tab" onclick="switchNetworkTab('followers')">
+          <span>🌟</span> Followers
+        </button>
+      </div>
+    </div>
+
+    <!-- User Grid Section -->
+    <div style="margin-top: 10px;">
+      <div id="networkGridContainer" class="users-grid">
+        <div class="spinner"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js"></script>
+  <script src="js/users.js"></script>
+</body>
+</html>
